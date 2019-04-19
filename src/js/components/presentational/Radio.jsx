@@ -5,15 +5,15 @@ import PropTypes from "prop-types"
 const RadioInput = ({ label, text, type, id, value, handleChange, checked}) => (
     <div className="form-group">
     <label htmlFor={label}>{text}</label>
-    <input 
-        type={type}
-        className="form-control"
-        id={id}
-        value={value}
-        onChange={handleChange}
-        checked={checked}
-        required
-      />
+        <input 
+            type={type}
+            className="form-control"
+            id={id}
+            value={value}
+            onChange={handleChange}
+            checked={checked}
+            required
+        />
     </div>
 );
 

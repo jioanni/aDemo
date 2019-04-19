@@ -12,6 +12,8 @@ const headerGenerator = (token, status) => {
     headerObject["Alloy-Entity-Token"] = secrets.declineToken
   } else if(status === "manual") {
     headerObject["Alloy-Entity-Token"] = secrets.manualToken
+  } else if(status === "questions"){
+    headerObject["Alloy-Entity-Token"] = secrets.questionsToken
   }
 
   return headerObject
