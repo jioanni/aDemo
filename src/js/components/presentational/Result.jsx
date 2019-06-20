@@ -8,7 +8,6 @@ const Result = ({response, entity}) => {
 
     const clickHandler = () => {
         const payload = {token : entity}
-        console.log(payload)
         axios.post('/api/reviews', payload)
         .then(response => console.log(response.data))
     }
