@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 const AppRouter = () => (
     <Router>
         <Switch>
-            <Route path="/" component={FormContainer} />
-            <Route exact path="/document" component={Document} />
+            <Route exact path="/" component={FormContainer} />
+            <Route path="/document" component={Document} />
         </Switch>
     </Router>
 )

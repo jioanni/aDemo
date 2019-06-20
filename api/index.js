@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/reviews', (req, res) => {
+ 
     const token = utility.authGenerator(secrets.key, secrets.secret)
  
     const authHeaders = utility.headerGenerator(token, req.body.response)
@@ -46,7 +47,9 @@ router.post('/', (req, res) => {
             res.send({"questions" : response.data.prompts.answers.questions,
                       "eval_token" : response.data.evaluation_token})
         } else {
-            res.send(response.data.summary.outcome)
+            res.send({"outcome" : response.data.summary.outcome,
+                      "eval_token" : response.data.evaluation_token,
+                      "entity_token" : response.data.entity_token})
         }
     })
     .catch(err => {

@@ -30,7 +30,8 @@ class FormContainer extends Component {
       response: "approve",
       blackbox: null,
       oow: null,
-      eval: null
+      eval: null,
+      entity: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -69,13 +70,14 @@ class FormContainer extends Component {
                        oow: response.data.questions,
                        eval: response.data.eval_token
                       })
-      }
-       if (response.data === "Approved"){
+        }
+       if (response.data.outcome === "Approved"){
             this.setState({status : "Approved"})
-        } else if (response.data === "Denied"){
+        } else if (response.data.outcome === "Denied"){
             this.setState({status : "Denied"})
-        } else if (response.data === "Manual Review"){
-            this.setState({status : "Manual Review"})
+        } else if (response.data.outcome === "Manual Review"){
+            this.setState({status : "Manual Review",
+                           entity: response.data.entity_token})
         }
     }).catch(err => (err))
   }
@@ -90,7 +92,7 @@ class FormContainer extends Component {
     const { name, lastName, address, address2, city, state, zip, dob, ssn, phone, email, oow, status } = this.state;
     
     if(status){
-      return( <Result response = {this.state.status} />)
+      return( <Result response = {this.state.status} entity = {this.state.entity} />)
     } else if(oow){
       return( <OutOfWallet questions = {this.state.oow} eval = {this.state.eval} /> )
     } else if(this.state.response === "document"){
@@ -226,14 +228,14 @@ class FormContainer extends Component {
             value="questions"
             handleChange={this.handleRadioChange}
             checked={this.state.response === "questions"}/>
-          <RadioInput
+          {/* <RadioInput
             text="Document Upload"
             label="document"
             type="radio"
             id="document" 
             value="document"
             handleChange={this.handleRadioChange}
-            checked={this.state.response === "document"}/>
+            checked={this.state.response === "document"}/> */}
         </div>
         </div>
       );
